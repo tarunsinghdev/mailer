@@ -9,6 +9,10 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarunsinghdev/mailer.git"
+  },
   "author": "Tarun Singh",
   "license": "MIT",
   "dependencies": {
