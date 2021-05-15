@@ -6,13 +6,13 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://shop-on-emart.herokuapp.com/)
 [![Build passing](https://img.shields.io/badge/Build-Passing-brightgreen.svg?style=flat-square)](https://shop-on-emart.herokuapp.com/)&nbsp;![Made with Love in India](https://madewithlove.org.in/badge.svg)
 
-⚠️ This app is in beta. You may encounter some bugs, please raise an issue.
+> ⚠️ _This app is in beta. You may encounter some bugs, please raise an issue_
 
 ### Live Website : [mailer](https://mail-dose.herokuapp.com/)
 
 ### Admin User
 
-**Email** : tarun@mailer.com
+**Email** : tarun@mailer.com <br />
 **password** : 123456
 
 ## ⭐️ Features
@@ -34,9 +34,9 @@
 
 ![image](https://user-images.githubusercontent.com/25122604/118374141-226c0500-b5d8-11eb-9d86-597a08544174.png)
 
-### Sign up Page
+### Sign in Page
 
-![image](https://user-images.githubusercontent.com/25122604/118007520-d582f700-b369-11eb-8beb-b2fa72a9b479.png)
+![image](https://user-images.githubusercontent.com/25122604/118374338-25b3c080-b5d9-11eb-9861-17e833cada74.png)
 
 ### Admin Dashboard
 
