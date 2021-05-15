@@ -34,9 +34,9 @@ const userSubscribe = asyncHandler(async (req, res) => {
     const msg = {
       to: user.email,
       from: 'tarunsingh5169202@outlook.com',
-      subject: 'Sending via SendGrid',
+      subject: 'Sign up successful',
       text: 'May it succeed!',
-      html: `<h1>You successfully signed up!</h1>`,
+      html: `<h1>Thank you for signing up.</h1><p>Now enjoy short and concise tech news everyday.`,
 
       // templateId: 'd-f91b59fd52924f5293a88875ea6f1828',
     };
@@ -85,7 +85,7 @@ const adminSendMail = asyncHandler(async (req, res) => {
       to: mails,
       from: 'tarunsingh5169202@outlook.com',
       subject: subject,
-      text: 'Receive a joke everyday!',
+      text: 'Tech news for tech savvy people!',
       html: `<h1>Here's your news</h1><p>${body}</p`,
 
       // templateId: 'd-f91b59fd52924f5293a88875ea6f1828',

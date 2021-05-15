@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import DashboardScreen from './screens/DashboardScreen';
