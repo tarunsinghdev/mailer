@@ -1,3 +1,39 @@
-export const userSubscribe = ({email}) => {
-    
-}
+import axios from 'axios';
+
+import {
+  USER_SUBSCRIBE_FAIL,
+  USER_SUBSCRIBE_REQUEST,
+  USER_SUBSCRIBE_SUCCESS,
+} from './actionTypes';
+
+export const userSubscribe = (email) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: USER_SUBSCRIBE_REQUEST });
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      console.log('Email from server: ', email);
+      const response = await axios.post(
+        '/api/user/subscribe',
+        { email }, //isAdmin default value would be taken
+        config
+      );
+      dispatch({ type: USER_SUBSCRIBE_SUCCESS, payload: response.data });
+    } catch (error) {
+      // console.log('error.response', error.response);
+      // console.log('error.response.data.message', error.response.data.message);
+      // console.log('error.message', error.message);
+      dispatch({
+        type: USER_SUBSCRIBE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+};

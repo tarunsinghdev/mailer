@@ -4,13 +4,16 @@ import express from 'express';
 
 import connectDB from './config/database.js';
 import userRoutes from './routes/userRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 dotenv.config();
 
 const app = express();
-app.use(express.json());
 
-app.use('/api/user/subscribe', userRoutes);
+app.use(express.json()); //built in express to recognize the incoming Request Object as a JSON Object.
+
+app.use('/api/user', userRoutes);
+app.use('/api/admin', adminRoutes);
 
 const PORT = process.env.PORT || 5000;
 

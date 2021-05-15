@@ -7,7 +7,9 @@
   "scripts": {
     "server": "nodemon server/server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node server/seeder",
+    "data:destroy": "node server/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -16,9 +18,12 @@
   "author": "Tarun Singh",
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.4",
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^9.0.1",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "mongoose": "^5.12.7",
     "nodemailer": "^6.6.0",
     "nodemailer-sendgrid-transport": "^0.2.0"

@@ -3,6 +3,6 @@ import { userSubscribe } from '../controller/userController.js';
 
 const router = express.Router();
 
-router.post('/', userSubscribe);
+router.post('/subscribe', userSubscribe);
 
 export default router;

@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { adminLogout } from '../store/actions/adminActions';
 
 const Header = () => {
-  const [login, setLogin] = useState(false);
+  const dispatch = useDispatch();
+  const { adminInfo } = useSelector((state) => state.adminLogin);
 
   const logoutHandler = () => {
-    setLogin(false);
+    dispatch(adminLogout());
   };
 
   return (
@@ -19,17 +22,19 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              {login ? (
-                <NavDropdown title="Admin" id="username">
-                  <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profil</NavDropdown.Item>
+              {adminInfo.email ? (
+                <>
+                  <NavDropdown title={adminInfo.email} id="username">
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                  <LinkContainer to="/admin/dashboard">
+                    <Nav.Link>Dashboard</Nav.Link>
                   </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                </>
               ) : (
-                <LinkContainer to="/login" onClick={() => setLogin(true)}>
+                <LinkContainer to="/admin/login">
                   <Nav.Link>
                     <i className="fas fa-user"></i>Admin Sign In
                   </Nav.Link>
