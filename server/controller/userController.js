@@ -86,7 +86,7 @@ const adminSendMail = asyncHandler(async (req, res) => {
       from: 'tarunsingh5169202@outlook.com',
       subject: subject,
       text: 'Receive a joke everyday!',
-      html: `<h1>Joke of the Day</h1><p>${body}</p`,
+      html: `<h1>Here's your news</h1><p>${body}</p`,
 
       // templateId: 'd-f91b59fd52924f5293a88875ea6f1828',
     };

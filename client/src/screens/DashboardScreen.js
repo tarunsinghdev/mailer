@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
@@ -8,7 +8,7 @@ import { adminSendMailAction } from '../store/actions/adminActions';
 //Display total subscribed users
 //FORM containing subject and body
 
-const DashboardScreen = () => {
+const DashboardScreen = ({ history }) => {
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
 
@@ -22,7 +22,7 @@ const DashboardScreen = () => {
     if (!adminInfo.email) {
       history.push('/');
     }
-  }, [adminInfo]);
+  }, [adminInfo, history]);
 
   const submitHandler = (e) => {
     e.preventDefault();
