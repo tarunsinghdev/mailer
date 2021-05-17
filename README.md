@@ -15,6 +15,13 @@
 **Email** : tarun@mailer.com <br />
 **password** : 123456
 
+## ⌛ Upcoming Features
+
+- Separate login sessions on phone, pc, tablet etc.
+- Redesign dashboard.
+- All subscribed users right on the dashboard.
+- Redesign mail sent.
+
 ## ⭐️ Features
 
 - Authentication(Admin only)
