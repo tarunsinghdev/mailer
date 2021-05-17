@@ -19,7 +19,7 @@
 
 - [ ] Separate login sessions on phone, pc, tablet etc.
 - [ ] Redesign dashboard.
-- [x]~~All subscribed users right on the dashboard.~~ :heavy_check_mark:
+- [x] ~~All subscribed users right on the dashboard.~~ :heavy_check_mark:
 - [ ] Redesign mail sent.
 
 ## ⭐️ Features
