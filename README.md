@@ -15,7 +15,7 @@
 **Email** : tarun@mailer.com <br />
 **password** : 123456
 
-## ⌛ Upcoming Features
+## ⏳ Upcoming Features
 
 - Separate login sessions on phone, pc, tablet etc.
 - Redesign dashboard.

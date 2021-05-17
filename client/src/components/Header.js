@@ -4,12 +4,13 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { adminLogout } from '../store/actions/adminActions';
 
-const Header = () => {
+const Header = ({ history }) => {
   const dispatch = useDispatch();
   const { adminInfo } = useSelector((state) => state.adminLogin);
 
   const logoutHandler = () => {
     dispatch(adminLogout());
+    history.push('/');
   };
 
   return (

@@ -1,10 +1,9 @@
 import asyncHandler from 'express-async-handler';
-// import nodemailer from 'nodemailer';
-// import sendgridTransport from 'nodemailer-sendgrid-transport';
+import dotenv from 'dotenv';
 
 import User from '../models/user.js';
 import sgMail from '@sendgrid/mail';
-import dotenv from 'dotenv';
+import generateAuthToken from '../util/generateToken.js';
 
 dotenv.config();
 
@@ -54,25 +53,30 @@ const userSubscribe = asyncHandler(async (req, res) => {
 //Method : POST
 //route : /api/admin/login
 
-const authUser = async (req, res) => {
+const authUser = async (req, res, next) => {
   const { email, password } = req.body;
-
   const adminUser = await User.findOne({ email });
-
-  if (!adminUser.isAdmin) {
-    res.status(400).send({ message: 'Not authorized as admin' });
-    throw new Error('Not authorized as admin');
-  }
-  if (adminUser && (await adminUser.matchPassword(password))) {
-    res.json({
-      _id: adminUser._id,
-      email: adminUser.email,
-    });
-  } else {
-    res.status(404).send({ message: 'Invalid email or password' });
-    throw new Error('Invalid email or password');
+  try {
+    if (!adminUser.isAdmin || !adminUser) {
+      throw new Error('Unable to login');
+    }
+    if (await adminUser.matchPassword(password)) {
+      res.json({
+        _id: adminUser._id,
+        email: adminUser.email,
+        token: await generateAuthToken(adminUser),
+      });
+    } else {
+      throw new Error('Invalid email or password');
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+    next(error);
   }
 };
+
+//Method : POST
+//route : /api/admin/sendmail
 
 const adminSendMail = asyncHandler(async (req, res) => {
   const { subject, body } = req.body;
