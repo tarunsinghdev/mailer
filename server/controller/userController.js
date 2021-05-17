@@ -57,7 +57,7 @@ const authUser = async (req, res, next) => {
   const { email, password } = req.body;
   const adminUser = await User.findOne({ email });
   try {
-    if (!adminUser.isAdmin || !adminUser) {
+    if (!adminUser || !adminUser.isAdmin) {
       throw new Error('Unable to login');
     }
     if (await adminUser.matchPassword(password)) {

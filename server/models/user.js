@@ -9,12 +9,15 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
+      trim: true,
       unique: true,
     },
     password: {
       type: String,
       required: true,
+      trim: true,
       default: bcrypt.hashSync('1234', 10),
+      minLength: 6,
     },
     isAdmin: {
       type: Boolean,
