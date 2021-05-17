@@ -17,10 +17,10 @@
 
 ## ⏳ Upcoming Features
 
-- Separate login sessions on phone, pc, tablet etc.
-- Redesign dashboard.
-- All subscribed users right on the dashboard.
-- Redesign mail sent.
+- [ ] Separate login sessions on phone, pc, tablet etc.
+- [ ] Redesign dashboard.
+- [x]~~All subscribed users right on the dashboard.~~ :heavy_check_mark:
+- [ ] Redesign mail sent.
 
 ## ⭐️ Features
 
@@ -47,7 +47,7 @@
 
 ### Admin Dashboard
 
-![image](https://user-images.githubusercontent.com/25122604/118374196-6959fa80-b5d8-11eb-9408-333a1e31f67e.png)
+![image](https://user-images.githubusercontent.com/25122604/118540495-42353180-b76e-11eb-9183-1dca7099e995.png)
 
 ### Don't forget to give this repo a ⭐ if you like this repo and want to appreciate the efforts
 

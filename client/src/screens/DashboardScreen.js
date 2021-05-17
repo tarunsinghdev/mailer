@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -29,9 +29,31 @@ const DashboardScreen = ({ history }) => {
     dispatch(adminSendMailAction(subject, body));
   };
 
+  const users = adminInfo.subscribedUsers.slice(1);
+
   return (
     <Container>
-      <Row className="justify-content-md-center">
+      <Row>
+        <Col xs={12} md={6}>
+          <h4>⭐{users.length} users subscribed your newsletter.</h4>
+          <Table striped bordered hover responsive className="text-primary">
+            <thead>
+              <tr>
+                <th style={{ fontSize: 18 }}>EMAIL ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr
+                  className="text-primary table-success"
+                  style={{ fontSize: 18 }}
+                >
+                  {user.email}
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Col>
         <Col xs={12} md={6}>
           <h2>Send Your Mail</h2>
           {error && <Message variant="danger">{error}</Message>}
@@ -53,7 +75,7 @@ const DashboardScreen = ({ history }) => {
               <Form.Control
                 required
                 as="textarea"
-                row={6}
+                rows={4}
                 type="text"
                 placeholder="Start writing..."
                 value={body}

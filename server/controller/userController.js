@@ -65,6 +65,7 @@ const authUser = async (req, res, next) => {
         _id: adminUser._id,
         email: adminUser.email,
         token: await generateAuthToken(adminUser),
+        subscribedUsers: await User.find({}).select('email'),
       });
     } else {
       throw new Error('Invalid email or password');
