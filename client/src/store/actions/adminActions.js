@@ -39,9 +39,34 @@ export const adminLogin = (email, password) => {
 };
 
 export const adminLogout = () => {
-  return (dispatch) => {
+  return async (dispatch, getState) => {
     localStorage.removeItem('adminInfo');
-    dispatch({ type: ADMIN_LOGOUT });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getState().adminLogin.adminInfo.token}`,
+      },
+    };
+
+    dispatch({ type: ADMIN_LOGOUT }); //clears the local state(adminInfo).
+    await axios.post('/api/admin/logout', {}, config);
+  };
+};
+
+export const adminLogoutAll = () => {
+  return async (dispatch, getState) => {
+    localStorage.removeItem('adminInfo');
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getState().adminLogin.adminInfo.token}`,
+      },
+    };
+
+    dispatch({ type: ADMIN_LOGOUT }); //clears the local state(adminInfo).
+    await axios.post('/api/admin/logoutall', {}, config);
   };
 };
 

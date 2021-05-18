@@ -2,7 +2,7 @@ import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { adminLogout } from '../store/actions/adminActions';
+import { adminLogout, adminLogoutAll } from '../store/actions/adminActions';
 
 const Header = ({ history }) => {
   const dispatch = useDispatch();
@@ -10,6 +10,11 @@ const Header = ({ history }) => {
 
   const logoutHandler = () => {
     dispatch(adminLogout());
+    history.push('/');
+  };
+
+  const logoutAllHandler = () => {
+    dispatch(adminLogoutAll());
     history.push('/');
   };
 
@@ -28,6 +33,9 @@ const Header = ({ history }) => {
                   <NavDropdown title={adminInfo.email} id="username">
                     <NavDropdown.Item onClick={logoutHandler}>
                       Logout
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick={logoutAllHandler}>
+                      Master Logout
                     </NavDropdown.Item>
                   </NavDropdown>
                   <LinkContainer to="/admin/dashboard">

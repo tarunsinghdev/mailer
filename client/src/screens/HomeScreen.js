@@ -24,7 +24,7 @@ const HomeScreen = () => {
     <>
       <Container>
         <Row className="justify-content-md-center">
-          <Col xs={12} md={7}>
+          <Col xs={12} md={9} lg={7}>
             <h2>Byte sized news for busy techies.</h2>
             <br />
             <strong style={{ textAlign: 'center' }}>
@@ -50,6 +50,7 @@ const HomeScreen = () => {
               ) : null}
               <Form.Label>Enter Your Email</Form.Label>
               <Form.Control
+                required
                 type="email"
                 placeholder="Enter email"
                 value={email}

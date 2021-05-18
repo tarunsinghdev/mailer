@@ -12,43 +12,47 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 //Method : POST
 //route : /api/user/subscribe
 
-const userSubscribe = asyncHandler(async (req, res) => {
+const userSubscribe = async (req, res) => {
   const { email, isAdmin } = req.body;
 
-  const userExists = await User.findOne({ email: email });
+  try {
+    const userExists = await User.findOne({ email: email });
 
-  if (userExists) {
-    res.status(400).json({ message: 'User already exists' }); //Bad request
-    throw new Error('User already exists');
-  }
-  const user = await User.create({
-    email,
-    isAdmin,
-  });
-  if (user) {
-    res.status(201).json({
-      email: user.email,
-      isAdmin: user.isAdmin,
+    if (userExists) {
+      res.status(400).json({ message: 'User already exists' }); //Bad request
+      throw new Error('User already exists');
+    }
+    const user = await User.create({
+      email,
+      isAdmin,
     });
-    const msg = {
-      to: user.email,
-      from: 'tarunsingh5169202@outlook.com',
-      subject: 'Sign up successful',
-      text: 'May it succeed!',
-      html: `<h1>Thank you for signing up.</h1><p>Now enjoy short and concise tech news everyday.`,
+    if (user) {
+      res.status(201).json({
+        email: user.email,
+        isAdmin: user.isAdmin,
+      });
+      const msg = {
+        to: user.email,
+        from: 'tarunsingh5169202@outlook.com',
+        subject: 'Sign up successful',
+        text: 'May it succeed!',
+        html: `<h1>Thank you for signing up.</h1><p>Now enjoy short and concise tech news everyday.`,
 
-      // templateId: 'd-f91b59fd52924f5293a88875ea6f1828',
-    };
+        // templateId: 'd-f91b59fd52924f5293a88875ea6f1828',
+      };
 
-    sgMail
-      .send(msg)
-      .then(() => console.log('mail sent!'))
-      .catch((err) => console.log(err));
-  } else {
-    res.status(400);
-    throw new Error('Invalid user data');
+      sgMail
+        .send(msg)
+        .then(() => console.log('mail sent!'))
+        .catch((err) => console.log(err));
+    } else {
+      throw new Error('Internal server error');
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+    next(error);
   }
-});
+};
 
 //Method : POST
 //route : /api/admin/login
@@ -73,6 +77,34 @@ const authUser = async (req, res, next) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
     next(error);
+  }
+};
+
+//Method: POST
+//router : /api/admin/logout
+
+const adminLogout = async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter(
+      (token) => token.token !== req.token
+    );
+    await req.user.save();
+    res.status(200).json({ message: 'Logged out successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+//Method: POST
+//router : /api/admin/logoutall
+
+const adminLogoutAll = async (req, res) => {
+  try {
+    req.user.tokens = [];
+    await req.user.save();
+    res.status(200).json({ message: 'Logged out accross devices' });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -105,4 +137,4 @@ const adminSendMail = asyncHandler(async (req, res) => {
   }
 });
 
-export { userSubscribe, authUser, adminSendMail };
+export { userSubscribe, authUser, adminLogout, adminLogoutAll, adminSendMail };

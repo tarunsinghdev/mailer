@@ -17,13 +17,15 @@
 
 ## ⏳ Upcoming Features
 
-- [ ] Separate login sessions on phone, pc, tablet etc.
+- [x] ~~Separate login sessions on phone, pc, tablet etc.~~ :heavy_check_mark:
 - [ ] Redesign dashboard.
 - [x] ~~All subscribed users right on the dashboard.~~ :heavy_check_mark:
 - [ ] Redesign mail sent.
 
 ## ⭐️ Features
 
+- Master logout(Logout across devices)
+- Separate login sessions on phone, pc, tablets etc.
 - Authentication(Admin only)
 - Subscribe to the newsletter
 - Welcome email on subscribing.
