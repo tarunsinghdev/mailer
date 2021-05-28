@@ -3,7 +3,14 @@ import User from '../models/user.js';
 
 const protect = async (req, res, next) => {
   try {
-    const token = req.header('Authorization').split(' ')[1]; //if no token goes to catch
+    const adminUser = await User.find({ isAdmin: true });
+    if (adminUser[0].tokens.length === 0) {
+      //check for multiple sessions
+      throw new Error('Unauthorized access, Please login again');
+    }
+
+    const token = req.header('Authorization').split(' ')[1]; //if no forward to catch
+
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
 

@@ -1,4 +1,5 @@
 import {
+  ADMIN_CLEAR_TOKEN,
   ADMIN_LOGIN_FAIL,
   ADMIN_LOGIN_REQUEST,
   ADMIN_LOGIN_SUCCESS,
@@ -21,6 +22,8 @@ const adminLoginReducer = (state = initialState, { type, payload }) => {
       return { ...state, loading: false, adminInfo: {}, error: payload };
     case ADMIN_LOGOUT:
       return { ...state, adminInfo: {} };
+    case ADMIN_CLEAR_TOKEN:
+      return { adminInfo: {} };
     default:
       return state;
   }

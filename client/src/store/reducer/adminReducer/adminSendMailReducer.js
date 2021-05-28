@@ -1,4 +1,5 @@
 import {
+  ADMIN_CLEAR_SENDMAIL_ERROR,
   ADMIN_SENDMAIL_FAIL,
   ADMIN_SENDMAIL_REQUEST,
   ADMIN_SENDMAIL_SUCCESS,
@@ -29,6 +30,11 @@ const adminSendMailReducer = (state = initialState, { type, payload }) => {
         loading: false,
         success: false,
         error: payload,
+      };
+    case ADMIN_CLEAR_SENDMAIL_ERROR:
+      return {
+        ...state,
+        error: null,
       };
     default:
       return state;

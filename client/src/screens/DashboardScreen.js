@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
@@ -18,25 +18,26 @@ const DashboardScreen = ({ history }) => {
   );
   const { adminInfo } = useSelector((state) => state.adminLogin);
 
-  useEffect(() => {
-    if (!adminInfo.email) {
-      history.push('/');
-    }
-  }, [adminInfo, history]);
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(adminSendMailAction(subject, body));
   };
 
-  const users = adminInfo.subscribedUsers.slice(1);
+  const users = adminInfo.subscribedUsers;
 
   return (
     <Container>
       <Row>
         <Col xs={12} md={6}>
           <h4>⭐{users.length} users subscribed your newsletter.</h4>
-          <Table striped bordered hover responsive className="text-primary">
+          <Table
+            striped
+            bordered
+            hover
+            responsive
+            className="text-primary"
+            size="sm"
+          >
             <thead>
               <tr>
                 <th style={{ fontSize: 18 }}>EMAIL ID</th>
@@ -45,10 +46,11 @@ const DashboardScreen = ({ history }) => {
             <tbody>
               {users.map((user) => (
                 <tr
-                  className="text-primary table-success"
+                  key={user._id}
+                  className="text-primary "
                   style={{ fontSize: 18 }}
                 >
-                  {user.email}
+                  <td>{user.email}</td>
                 </tr>
               ))}
             </tbody>

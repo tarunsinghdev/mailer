@@ -15,6 +15,7 @@ const LoginScreen = ({ history, location }) => {
   const { adminInfo, loading, error } = useSelector(
     (state) => state.adminLogin
   );
+  const { error: errorSendMail } = useSelector((state) => state.adminSendMail);
 
   useEffect(() => {
     if (adminInfo.email) {
@@ -30,6 +31,7 @@ const LoginScreen = ({ history, location }) => {
   return (
     <FormContainer>
       <h1>Admin Sign In</h1>
+      {errorSendMail && <Message variant="info">{errorSendMail}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,6 +19,12 @@ const HomeScreen = () => {
     e.preventDefault();
     dispatch(userSubscribe(email));
   };
+
+  useEffect(() => {
+    if (success) {
+      setEmail('');
+    }
+  }, [success]);
 
   return (
     <>

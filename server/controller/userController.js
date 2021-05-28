@@ -33,10 +33,10 @@ const userSubscribe = async (req, res) => {
       });
       const msg = {
         to: user.email,
-        from: 'tarunsingh5169202@outlook.com',
+        from: 'mailer.newsletter.app@gmail.com',
         subject: 'Sign up successful',
         text: 'May it succeed!',
-        html: `<h1>Thank you for signing up.</h1><p>Now enjoy short and concise tech news everyday.`,
+        html: `<h1 style="font-size: 40px">Thanks for signing up.<br/> We think <span style="color:#e85042">you'll love it here.</span></h1><p style="font-size: 22px">Now enjoy short and concise tech news everyday. <br /> Mailer is a daily newsletter app with links and the TLDRs <br/> of the most interesting stories in tech! &nbsp;<br/><br/> Tarun Singh<br/>Founder, <a style="color:#e85042" href="https://mail-dose.herokuapp.com/">Mailer</a>`,
 
         // templateId: 'd-f91b59fd52924f5293a88875ea6f1828',
       };
@@ -69,7 +69,7 @@ const authUser = async (req, res, next) => {
         _id: adminUser._id,
         email: adminUser.email,
         token: await generateAuthToken(adminUser),
-        subscribedUsers: await User.find({}).select('email'),
+        subscribedUsers: (await User.find({}).select('email')).slice(1),
       });
     } else {
       throw new Error('Invalid email or password');
@@ -92,6 +92,7 @@ const adminLogout = async (req, res) => {
     res.status(200).json({ message: 'Logged out successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
+    next(error);
   }
 };
 
@@ -115,15 +116,15 @@ const adminSendMail = asyncHandler(async (req, res) => {
   const { subject, body } = req.body;
 
   const allUsers = await User.find({});
-  const mails = allUsers.map((user) => user.email);
 
+  const mails = allUsers.map((user) => user.email);
   if (subject.trim() && body.trim()) {
     const msg = {
-      to: mails,
-      from: 'tarunsingh5169202@outlook.com',
+      to: mails.slice(1),
+      from: 'mailer.newsletter.app@gmail.com',
       subject: subject,
       text: 'Tech news for tech savvy people!',
-      html: `<h1>Here's your news</h1><p>${body}</p`,
+      html: `<h1 style="color:#e85042">Top news of the day.</h1><p style="font-size:20px">${body}</p`,
 
       // templateId: 'd-f91b59fd52924f5293a88875ea6f1828',
     };
