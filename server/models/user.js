@@ -14,9 +14,7 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
       trim: true,
-      default: bcrypt.hashSync('1234', 10),
       minLength: 6,
     },
     isAdmin: {
@@ -35,11 +33,6 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
-
-// userSchema.methods.generateAuthToken = async function () {
-//   const token = jwt.sign({ _id: this._id.toString() }, process.env.JWT_SECRET);
-//   return token;
-// };
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);

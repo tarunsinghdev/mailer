@@ -11,12 +11,12 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json()); //built in express to recognize the incoming Request Object as a JSON Object.
+app.use(express.json());
 
 app.use('/api/user', userRoutes);
 app.use('/api/admin', adminRoutes);
 
-const __dirname = path.resolve(); //as here we're using es module syntax
+const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')));
