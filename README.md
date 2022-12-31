@@ -6,9 +6,11 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://shop-on-emart.herokuapp.com/)
 [![Build passing](https://img.shields.io/badge/Build-Passing-brightgreen.svg?style=flat-square)](https://shop-on-emart.herokuapp.com/)&nbsp;![Made with Love in India](https://madewithlove.org.in/badge.svg)
 
-> ⚠️ _This app is in beta. You may encounter some bugs, please raise an issue_
+### Live Website : [mailer](https://mail-dose.onrender.com)
 
-### Live Website : [mailer](https://mail-dose.herokuapp.com/)
+### ⛔️ **Important Note** ⛔️
+This app is hosted on [Render](https://render.com/) under [free plan](https://render.com/docs/free#free-web-services). This can cause a response delay of up to 30 seconds for the first request that comes in after a period of inactivity.
+> Web Services on the free instance type are automatically spun down after 15 minutes of inactivity. When a new request for a free service comes in, Render spins it up again so it can process the request. 
 
 ### Admin User
 
